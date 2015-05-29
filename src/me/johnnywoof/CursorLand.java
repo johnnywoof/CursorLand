@@ -33,6 +33,18 @@ public class CursorLand extends WebSocketServer {
 
 		this.broadcastMessage(port, "C:" + id);
 
+		for (WebSocket ws : this.connections()) {
+
+			int sp = this.getPortFromSocket(ws);
+
+			if (sp != port) {
+
+				webSocket.send("C:" + this.portToID.get(sp));
+
+			}
+
+		}
+
 	}
 
 	@Override
